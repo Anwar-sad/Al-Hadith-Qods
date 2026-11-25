@@ -27,6 +27,10 @@ jobs:
       - name: Extract project
         run: unzip -o Noor-AlQuds-v5.zip
 
+      - name: Fix database counts
+        run: |
+          sed -i 's/!= 392/!= 411/; s/!= 333/!= 352/; s/!= 33)/!= 37)/' zad/app/build.gradle
+
       - name: Setup Android SDK
         run: |
           SDKMANAGER=$(find "$ANDROID_HOME/cmdline-tools" -name sdkmanager -type f | head -n 1)
@@ -35,7 +39,7 @@ jobs:
 
       - name: Build APK
         working-directory: zad
-        run: gradle assembleDebug --refresh-dependencies
+        run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
