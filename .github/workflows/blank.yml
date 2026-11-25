@@ -35,7 +35,7 @@ jobs:
 
       - name: Build APK
         working-directory: zad
-        run: gradle assembleDebug --stacktrace
+        run: gradle assembleDebug --refresh-dependencies
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
